@@ -1,16 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AstralTechManeuver : BaseManeuver
+
+public class ActorManeuverSystemUI : MonoBehaviour
 {
-
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        CreateActorManeuverButtons();
     }
 
     // Update is called once per frame
@@ -19,8 +18,8 @@ public class AstralTechManeuver : BaseManeuver
         
     }
 
-    public override void ActivateManeuver(Action onActionComplete)
+    private void CreateActorManeuverButtons()
     {
-        throw new NotImplementedException();
+
     }
 }

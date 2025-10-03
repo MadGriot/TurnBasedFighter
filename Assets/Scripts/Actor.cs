@@ -1,6 +1,7 @@
 using Assets.Scripts.Mechanics;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Actor : MonoBehaviour
 {
@@ -15,9 +16,11 @@ public class Actor : MonoBehaviour
     internal bool DidDefensiveManeuver;
     internal List<StatusEffect> StatusEffects;
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
+    internal bool actorSelected;
+   // private DamageSystem damageSystem;
     void Start()
     {
-        
+        //damageSystem = GetComponent<DamageSystem>();
     }
 
     // Update is called once per frame
@@ -54,5 +57,11 @@ public class Actor : MonoBehaviour
     public bool CanDoManeuver(BaseManeuver baseManeuver)
     {
         return baseManeuver.ManeuverValidation();
+    }
+
+    public void Damage(int damage)
+    {
+        //damageSystem.Damage(damage);
+
     }
 }

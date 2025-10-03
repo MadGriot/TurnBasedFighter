@@ -10,7 +10,7 @@ public abstract class BaseManeuver : MonoBehaviour
     internal ActorActionSystem2D ActorActionSystem { get; set; }
 
     public string Name { get; protected set; } = "Maneuver";
-    internal bool isActive;
+    internal bool IsActive;
     internal bool IsOffensive;
     internal int ManeuverPointCost;
     internal bool IsAstralTech;
@@ -31,7 +31,7 @@ public abstract class BaseManeuver : MonoBehaviour
     {
         
     }
-
+    public abstract void ActivateManeuver(Action onActionComplete);
     public virtual bool ManeuverValidation()
     {
         
@@ -40,5 +40,18 @@ public abstract class BaseManeuver : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    protected void ManeuverStart(Action onActionComplete)
+    {
+        IsActive = true;
+        OnActionComplete = onActionComplete;
+    }
+
+    protected void ManeuverComplete()
+    {
+        IsActive = false;
+        Actor.ManueverPoints -= ManeuverPointCost;
+        OnActionComplete();
     }
 }
