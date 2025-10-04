@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,11 @@ using UnityEngine.UI;
 
 public class ActorManeuverSystemUI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Transform maneuverButtonPrefab;
+    [SerializeField] private Transform maneuverButtonContainerTransform;
     void Start()
     {
+        ActorActionSystem2D.Instance.OnSelectedActorChanged += ActorActionSystem2D_OnSelectedActorChanged;
         CreateActorManeuverButtons();
     }
 
@@ -20,6 +23,20 @@ public class ActorManeuverSystemUI : MonoBehaviour
 
     private void CreateActorManeuverButtons()
     {
+        foreach (Transform buttonTransform in maneuverButtonContainerTransform)
+        {
+            Destroy(buttonTransform.gameObject);
+        }
+        Actor selectedActor = ActorActionSystem2D.Instance.GetSelectedActor();
 
+        foreach (BaseManeuver baseManeuver in selectedActor.BaseManeuvers)
+        {
+            Instantiate(maneuverButtonPrefab, maneuverButtonContainerTransform);
+        }
+    }
+
+    private void ActorActionSystem2D_OnSelectedActorChanged(object sender, EventArgs e)
+    {
+        CreateActorManeuverButtons();
     }
 }

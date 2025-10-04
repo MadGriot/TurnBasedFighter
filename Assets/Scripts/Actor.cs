@@ -17,7 +17,13 @@ public class Actor : MonoBehaviour
     internal List<StatusEffect> StatusEffects;
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
-   // private DamageSystem damageSystem;
+    // private DamageSystem damageSystem;
+
+    private void Awake()
+    {
+        BaseManeuvers = GetComponents<BaseManeuver>();
+
+    }
     void Start()
     {
         //damageSystem = GetComponent<DamageSystem>();

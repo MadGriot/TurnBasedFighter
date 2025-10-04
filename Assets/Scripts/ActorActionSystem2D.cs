@@ -12,7 +12,8 @@ public class ActorActionSystem2D : MonoBehaviour
     private float UITimer;
     private bool hasRemovedDisplayNumber = true;
 
-    public Actor Actor { get; set; }
+    [SerializeField] private Actor Actor;
+
     public event EventHandler OnSelectedActorChanged;
     public event EventHandler OnSelectedManeuverChanged;
     public event EventHandler OnManeuverStarted;
@@ -45,6 +46,8 @@ public class ActorActionSystem2D : MonoBehaviour
 
     private void SetBusy() => IsBusy = true;
     private void ClearBusy() => IsBusy = false;
+
+    public Actor GetSelectedActor() => Actor;
     private void SetSelectedActor(Actor actor)
     {
 
