@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AttackManeuver : BaseManeuver
@@ -21,15 +22,53 @@ public class AttackManeuver : BaseManeuver
     private Actor targetActor;
     private bool canAttack;
     private DiceDamage diceDamage;
-    void Start()
+    protected void Start()
     {
-        
+        base.Start();
+        Name = "Attack";
+        ManeuverPointCost = 1;
+        IsOffensive = true;
+        //weapon = Actor.Character.Weapon;
+        //diceDamage = new DiceDamage(weapon);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (!IsActive) return;
+
+        stateTimer -= Time.deltaTime;
+        switch (attackState)
+        {
+            case AttackState.Ready:
+                if (stateTimer <= 0f)
+                {
+                    attackState = AttackState.Attacking;
+                    stateTimer = 1.0f;
+                }
+                break;
+            case AttackState.Attacking:
+                //Attack Animation
+                if (stateTimer <= 0f)
+                {
+                    if (canAttack)
+                    {
+                        Attack();
+                        canAttack = false;
+                    }
+                    attackState = AttackState.Cooloff;
+                    stateTimer = 0.5f;
+                }
+                break;
+            case AttackState.Cooloff:
+                //End Animation;
+                if (stateTimer <= 0f)
+                {
+                    ManeuverComplete();
+                }
+                break;
+        }
     }
     private void Attack()
     {

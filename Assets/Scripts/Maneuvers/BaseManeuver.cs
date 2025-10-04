@@ -6,7 +6,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public abstract class BaseManeuver : MonoBehaviour
 {
-    public Actor Actor { get; set; }
+    public Actor Actor;
     internal ActorActionSystem2D ActorActionSystem { get; set; }
 
     public string Name { get; protected set; } = "Maneuver";
@@ -21,7 +21,7 @@ public abstract class BaseManeuver : MonoBehaviour
     {
 
     }
-    void Start()
+    protected void Start()
     {
         
     }
