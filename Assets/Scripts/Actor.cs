@@ -1,4 +1,5 @@
 using Assets.Scripts.Mechanics;
+using Assets.Scripts.Models.CharacterSheets;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -17,7 +18,7 @@ public class Actor : MonoBehaviour
     internal List<StatusEffect> StatusEffects;
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
-    // private DamageSystem damageSystem;
+    private DamageSystem damageSystem;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class Actor : MonoBehaviour
     }
     void Start()
     {
-        //damageSystem = GetComponent<DamageSystem>();
+        damageSystem = GetComponent<DamageSystem>();
+        Character = Leonama.GenerateCharacter();
     }
 
     // Update is called once per frame
