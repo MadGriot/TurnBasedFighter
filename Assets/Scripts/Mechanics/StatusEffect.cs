@@ -19,6 +19,12 @@ namespace Assets.Scripts.Mechanics
         Petrification,
         Sleep,
         Firewalled,
-        Frostbite
+        Frostbite,
+        BurnEffect,
+        DrenchEffect,
+        ChillEffect,
+        ShockEffect,
+        Hit,
+        DamageResistance
     }
 }

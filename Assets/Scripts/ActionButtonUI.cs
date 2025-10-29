@@ -9,7 +9,7 @@ public class ActionButtonUI : MonoBehaviour
 
     public void SetBaseManeuver(BaseManeuver baseManeuver)
     {
-        textMeshPro.text = baseManeuver.Name.ToUpper();
+        textMeshPro.text = baseManeuver.Name;
     }
     void Start()
     {

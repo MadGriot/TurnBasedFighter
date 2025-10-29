@@ -19,6 +19,10 @@ namespace Assets.Scripts.Equipment
         Impaling,
         Piercing,
         Shocking,
-        Toxic
+        Toxic,
+        Healing,
+        Buff,
+        Debuff,
+        Gravity,
     }
 }

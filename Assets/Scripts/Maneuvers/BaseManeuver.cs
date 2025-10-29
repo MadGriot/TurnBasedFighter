@@ -8,7 +8,7 @@ public abstract class BaseManeuver : MonoBehaviour
 {
     public Actor Actor;
     internal ActorActionSystem2D ActorActionSystem { get; set; }
-
+    public string ValidationErrorMessage { get; protected set; } = "Can not do maneuver";
     public string Name { get; protected set; } = "Maneuver";
     internal bool IsActive;
     internal bool IsOffensive;
