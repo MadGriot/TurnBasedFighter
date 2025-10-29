@@ -24,7 +24,6 @@ public class AttackManeuver : BaseManeuver
     private DiceDamage diceDamage;
     protected void Start()
     {
-        base.Start();
         Name = "Attack";
         ManeuverPointCost = 1;
         IsOffensive = true;

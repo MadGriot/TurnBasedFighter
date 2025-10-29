@@ -31,7 +31,9 @@ public class ActorManeuverSystemUI : MonoBehaviour
 
         foreach (BaseManeuver baseManeuver in selectedActor.BaseManeuvers)
         {
-            Instantiate(maneuverButtonPrefab, maneuverButtonContainerTransform);
+            Transform actionButtonTransfrom = Instantiate(maneuverButtonPrefab, maneuverButtonContainerTransform);
+            ActionButtonUI actionButtonUI = actionButtonTransfrom.GetComponent<ActionButtonUI>();
+            actionButtonUI.SetBaseManeuver(baseManeuver);
         }
     }
 

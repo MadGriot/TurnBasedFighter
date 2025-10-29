@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2433702529467521197}
   - component: {fileID: 5041553612985533319}
   - component: {fileID: 3043695596259024926}
+  - component: {fileID: 7475799218042504036}
   m_Layer: 5
   m_Name: ManeuverButtonUI
   m_TagString: Untagged
@@ -121,6 +122,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7475799218042504036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226196856839936219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed0309f68cb1fc4eb69b8bd91d0518e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 3119544898079291993}
+  button: {fileID: 3043695596259024926}
 --- !u!1 &4605369797610354735
 GameObject:
   m_ObjectHideFlags: 0
