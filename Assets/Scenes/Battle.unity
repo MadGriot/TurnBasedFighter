@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 348590020}
-  - component: {fileID: 348590019}
+  - component: {fileID: 348590021}
   m_Layer: 0
   m_Name: ActorActionSystem2D
   m_TagString: Untagged
@@ -139,19 +139,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &348590019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348590018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b166ea993617c34bbc0360cf743d010, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Actor: {fileID: 1086948801}
 --- !u!4 &348590020
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +154,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &348590021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348590018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b166ea993617c34bbc0360cf743d010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Actor: {fileID: 1086948801}
+  BossActor: {fileID: 898955934}
 --- !u!1 &393984686
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,20 +455,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
       propertyPath: m_Colors.m_SelectedColor.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
-      value: 0.28235295
+      value: 0.7686275
       objectReference: {fileID: 0}
     - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
-      value: 0.078431375
+      value: 0.7686275
       objectReference: {fileID: 0}
     - target: {fileID: 3043695596259024926, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
       propertyPath: m_Colors.m_SelectedColor.r
-      value: 0.3137255
+      value: 0.7686275
       objectReference: {fileID: 0}
     - target: {fileID: 3119544898079291993, guid: 331206ec696d7d84cb27d6eba1ac8eb5, type: 3}
       propertyPath: m_text
@@ -494,6 +507,7 @@ GameObject:
   - component: {fileID: 898955933}
   - component: {fileID: 898955932}
   - component: {fileID: 898955934}
+  - component: {fileID: 898955935}
   m_Layer: 0
   m_Name: BossSprite
   m_TagString: Untagged
@@ -580,7 +594,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adedeb471cf96d4c9836a024bd2bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Corduka
   IsEnemy: 1
+--- !u!114 &898955935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898955931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86241f22256e6e4459f63c1df6cb1b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920887429
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +698,7 @@ GameObject:
   - component: {fileID: 1086948805}
   - component: {fileID: 1086948806}
   - component: {fileID: 1086948807}
+  - component: {fileID: 1086948808}
   m_Layer: 0
   m_Name: CharacterSprite
   m_TagString: Untagged
@@ -690,6 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adedeb471cf96d4c9836a024bd2bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CharacterName: Leonama
   IsEnemy: 0
 --- !u!212 &1086948802
 SpriteRenderer:
@@ -810,6 +839,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Actor: {fileID: 0}
+--- !u!114 &1086948808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086948800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86241f22256e6e4459f63c1df6cb1b4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1210540990
 GameObject:
   m_ObjectHideFlags: 0

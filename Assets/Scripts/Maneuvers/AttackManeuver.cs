@@ -120,7 +120,7 @@ public class AttackManeuver : BaseManeuver
         if (hitTarget)
         {
             int damage = diceDamage.RollDamage();
-            targetActor.Damage(damage);
+            targetActor.Damage(damage, weapon.DamageType);
         }
         else
         {

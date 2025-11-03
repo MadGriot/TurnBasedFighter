@@ -1,20 +1,23 @@
+using Assets.Scripts.Equipment;
 using Assets.Scripts.Mechanics;
+using Assets.Scripts.Models;
 using Assets.Scripts.Models.CharacterSheets;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Actor : MonoBehaviour
 {
     const int MAX_MANEUVER_POINTS = 3;
     internal int ManueverPoints = MAX_MANEUVER_POINTS;
 
+    [SerializeField]
+    private string CharacterName;
     public bool IsEnemy;
     internal Character Character;
     internal BaseManeuver[] BaseManeuvers;
     internal bool DidOffensiveManeuver;
     internal bool DidDefensiveManeuver;
-    internal List<StatusEffect> StatusEffects;
+    internal List<StatusEffectRecord> StatusEffects { get; set; } = new();
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
     private DamageSystem damageSystem;
@@ -27,8 +30,16 @@ public class Actor : MonoBehaviour
     void Start()
     {
         damageSystem = GetComponent<DamageSystem>();
-        Character = Leonama.GenerateCharacter();
-        ActorActionSystem2D.Instance.TurnQueue.Add(this);
+
+        switch (CharacterName)
+        {
+            case "Leonama":
+                Character = NewCharacter.GenerateLeonama();
+                break;
+            case "Corduka":
+                Character = NewCharacter.GenerateCorduka();
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -67,9 +78,11 @@ public class Actor : MonoBehaviour
         return baseManeuver.ManeuverValidation();
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, DamageType damageType)
     {
-        //damageSystem.Damage(damage);
+        damageSystem.Damage(damage, StatusEffects, damageType);
 
     }
+
+    public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;
 }

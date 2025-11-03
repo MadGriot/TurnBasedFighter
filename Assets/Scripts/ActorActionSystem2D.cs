@@ -1,3 +1,4 @@
+using Assets.Scripts.Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ public class ActorActionSystem2D : MonoBehaviour
     private bool hasRemovedDisplayNumber = true;
 
     [SerializeField] private Actor Actor;
-
+    [SerializeField] private Actor BossActor;
     public event EventHandler OnSelectedActorChanged;
     public event EventHandler OnSelectedManeuverChanged;
     public event EventHandler OnManeuverStarted;
@@ -36,6 +37,8 @@ public class ActorActionSystem2D : MonoBehaviour
     void Start()
     {
         SetSelectedActor(Actor);
+        TurnQueue.Add(Actor);
+        TurnQueue.Add(BossActor);
 
     }
 
@@ -44,7 +47,17 @@ public class ActorActionSystem2D : MonoBehaviour
     {
 
     }
-
+    public void TurnEnded()
+    {
+        Actor actor = TurnQueue[0];
+        TurnQueue.RemoveAt(0);
+        actor.ResetManeuverPoints();
+        actor.DefensiveStatus = DefensiveStatus.None;
+        TurnQueue.Add(actor);
+        IsPlayerTurn = !actor.IsEnemy;
+        SetSelectedActor(actor);
+        OnTurnEnded?.Invoke(this, EventArgs.Empty);
+    }
     private void SetBusy() => IsBusy = true;
     private void ClearBusy() => IsBusy = false;
 
