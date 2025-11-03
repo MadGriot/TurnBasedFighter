@@ -36,12 +36,13 @@ public class ActorActionSystem2D : MonoBehaviour
     void Start()
     {
         SetSelectedActor(Actor);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        HandleSelectedManeuver();
+
     }
 
     private void SetBusy() => IsBusy = true;
@@ -59,22 +60,17 @@ public class ActorActionSystem2D : MonoBehaviour
 
         OnSelectedActorChanged?.Invoke(this, EventArgs.Empty);
     }
-    private void HandleSelectedManeuver()
+    public void HandleSelectedManeuver()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (maneuverSelected)
+
+            if (Actor.CanDoManeuver(SelectedManeuver))
             {
-                if (Actor.CanDoManeuver(SelectedManeuver))
-                {
-                    SetBusy();
-                    SelectedManeuver.ActivateManeuver(ClearBusy);
-                    OnMpUsed?.Invoke(this, new MpUsedEventArgs(SelectedManeuver.ManeuverPointCost));
-                    OnManeuverStarted?.Invoke(this, EventArgs.Empty);
-                    maneuverSelected = false;
-                }
+                SetBusy();
+                SelectedManeuver.ActivateManeuver(ClearBusy);
+                OnMpUsed?.Invoke(this, new MpUsedEventArgs(SelectedManeuver.ManeuverPointCost));
+                OnManeuverStarted?.Invoke(this, EventArgs.Empty);
             }
-        }
+       
     }
     public class MpUsedEventArgs : EventArgs
     {

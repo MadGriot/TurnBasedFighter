@@ -9,7 +9,6 @@ public class Actor : MonoBehaviour
     const int MAX_MANEUVER_POINTS = 3;
     internal int ManueverPoints = MAX_MANEUVER_POINTS;
 
-    internal ActorActionSystem2D ActorActionSystem;
     public bool IsEnemy;
     internal Character Character;
     internal BaseManeuver[] BaseManeuvers;
@@ -29,6 +28,7 @@ public class Actor : MonoBehaviour
     {
         damageSystem = GetComponent<DamageSystem>();
         Character = Leonama.GenerateCharacter();
+        ActorActionSystem2D.Instance.TurnQueue.Add(this);
     }
 
     // Update is called once per frame

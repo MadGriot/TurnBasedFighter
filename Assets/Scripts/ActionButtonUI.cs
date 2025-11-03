@@ -13,6 +13,7 @@ public class ActionButtonUI : MonoBehaviour
         button.onClick.AddListener(() =>
         {
             ActorActionSystem2D.Instance.SelectedManeuver = baseManeuver;
+            ActorActionSystem2D.Instance.HandleSelectedManeuver();
         });
     }
     void Start()
