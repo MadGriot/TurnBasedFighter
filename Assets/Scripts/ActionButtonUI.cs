@@ -10,6 +10,10 @@ public class ActionButtonUI : MonoBehaviour
     public void SetBaseManeuver(BaseManeuver baseManeuver)
     {
         textMeshPro.text = baseManeuver.Name;
+        button.onClick.AddListener(() =>
+        {
+            ActorActionSystem2D.Instance.SelectedManeuver = baseManeuver;
+        });
     }
     void Start()
     {

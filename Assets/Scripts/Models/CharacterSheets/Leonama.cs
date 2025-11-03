@@ -34,6 +34,20 @@ namespace Assets.Scripts.Models.CharacterSheets
                     Speed = 10.75M,
                     Strength = 29,
                     Wisdom = 14,
+                },
+                Weapon = new WeaponModel()
+                {
+                    Name = "Tauriko T17",
+                    DiceCount = 2,
+                    Accuracy = 2,
+                    Range = 20,
+                    WeaponWeight = 2,
+                    AmmoWeight = 0.7M,
+                    RoF = 3,
+                    MaxAmmo = 20,
+                    Bulk = -1,
+                    Cost = 550,
+                    Modifier = 1
                 }
             };
         }

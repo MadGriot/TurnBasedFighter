@@ -11,10 +11,14 @@ public class ShieldManeuver : BaseManeuver
 {
     private float timer = 0.25f;
 
-
-    void Start()
+    protected void Awake()
     {
         Name = "Shield";
+
+    }
+    void Start()
+    {
+
         ManeuverPointCost = 1;
     }
 

@@ -13,6 +13,7 @@ namespace Assets.Scripts.Equipment
         Spear,
         Sword,
         Fist,
-        Staff
+        Staff,
+        Shotgun,
     }
 }

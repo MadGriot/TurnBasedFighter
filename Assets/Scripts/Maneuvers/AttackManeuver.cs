@@ -22,13 +22,19 @@ public class AttackManeuver : BaseManeuver
     private Actor targetActor;
     private bool canAttack;
     private DiceDamage diceDamage;
-    protected void Start()
+
+    protected void Awake()
     {
         Name = "Attack";
+
+    }
+    protected void Start()
+    {
+
         ManeuverPointCost = 1;
         IsOffensive = true;
-        //weapon = Actor.Character.Weapon;
-        //diceDamage = new DiceDamage(weapon);
+        weapon = Actor.Character.Weapon;
+        diceDamage = new DiceDamage(weapon);
     }
 
     // Update is called once per frame

@@ -9,9 +9,15 @@ public class DodgeManeuver : BaseManeuver
 
 
     private float timer = 0.25f;
-    protected void Start()
+
+    protected void Awake()
     {
         Name = "Dodge";
+
+    }
+    protected void Start()
+    {
+
         ManeuverPointCost = 1;
     }
 

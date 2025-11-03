@@ -9,7 +9,7 @@ public abstract class BaseManeuver : MonoBehaviour
     public Actor Actor;
     internal ActorActionSystem2D ActorActionSystem { get; set; }
     public string ValidationErrorMessage { get; protected set; } = "Can not do maneuver";
-    public string Name { get; protected set; } = "Maneuver";
+    public string Name { get; set; }
     internal bool IsActive;
     internal bool IsOffensive;
     internal int ManeuverPointCost;
@@ -21,9 +21,13 @@ public abstract class BaseManeuver : MonoBehaviour
     {
 
     }
-    protected void Start()
+    protected void Awake()
     {
-        
+        Name = "Manuever";
+
+    }
+    void Start()
+    {
     }
 
     // Update is called once per frame
