@@ -4,6 +4,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Models.CharacterSheets;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Actor : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Actor : MonoBehaviour
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
     private DamageSystem damageSystem;
+    public Slider HealthBar; 
 
     private void Awake()
     {
@@ -40,6 +42,8 @@ public class Actor : MonoBehaviour
                 Character = NewCharacter.GenerateCorduka();
                 break;
         }
+        HealthBar.maxValue = Character.AttributeScore.HP;
+        HealthBar.value = Character.AttributeScore.MinHP;
     }
 
     // Update is called once per frame
@@ -81,7 +85,7 @@ public class Actor : MonoBehaviour
     public void Damage(int damage, DamageType damageType)
     {
         damageSystem.Damage(damage, StatusEffects, damageType);
-
+        HealthBar.value = Character.AttributeScore.MinHP;
     }
 
     public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;

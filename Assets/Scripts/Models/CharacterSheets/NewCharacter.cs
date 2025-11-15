@@ -10,7 +10,21 @@ namespace Assets.Scripts.Models.CharacterSheets
     {
         public static Character GenerateLeonama()
         {
-            return new Character()
+            List<SkillModel> skills = new()
+            {
+                new SkillModel
+                {
+                    Level = 3,
+                    Skill = Mechanics.Skill.BallisticWeapons,
+
+                },
+                new SkillModel
+                {
+                    Level = 2,
+                    Skill = Mechanics.Skill.MeleeWeapons,
+                }
+            };
+            Character character = new Character()
             {
                 FirstName = "Leonama",
                 LastName = "Samax",
@@ -58,6 +72,8 @@ namespace Assets.Scripts.Models.CharacterSheets
                 }
                 
             };
+            character.Skills.AddRange(skills);
+            return character;
         }
 
         public static Character GenerateCorduka()
