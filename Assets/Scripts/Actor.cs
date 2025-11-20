@@ -24,7 +24,8 @@ public class Actor : MonoBehaviour
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
     private DamageSystem damageSystem;
-    public Slider HealthBar; 
+    public Slider HealthBar;
+    public Slider ShieldBar;
 
     private void Awake()
     {
@@ -46,6 +47,8 @@ public class Actor : MonoBehaviour
         }
         HealthBar.maxValue = Character.AttributeScore.HP;
         HealthBar.value = Character.AttributeScore.MinHP;
+        ShieldBar.maxValue = Character.Shield.MaxSP;
+        ShieldBar.value = Character.Shield.MinSP;
         ResetDefensiveStatus();
     }
     public void ResetDefensiveStatus()
@@ -93,6 +96,7 @@ public class Actor : MonoBehaviour
     {
         damageSystem.Damage(damage, StatusEffects, damageType);
         HealthBar.value = Character.AttributeScore.MinHP;
+        ShieldBar.value = Character.Shield.MinSP;
     }
 
     public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;

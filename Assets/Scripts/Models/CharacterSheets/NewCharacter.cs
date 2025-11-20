@@ -69,8 +69,15 @@ namespace Assets.Scripts.Models.CharacterSheets
                     DamageResistance = 2,
                     Cost = 120000,
                     Weight = 10,
+                },
+                Shield = new ShieldModel()
+                {
+                    Name = "Magutum",
+                    MinSP = 45,
+                    MaxSP = 45,
+                    SPCost = 5,
+                    Cost = 550
                 }
-                
             };
             character.Skills.AddRange(skills);
             return character;
@@ -124,6 +131,14 @@ namespace Assets.Scripts.Models.CharacterSheets
                     DamageResistance = 2,
                     Cost = 120000,
                     Weight = 10,
+                },
+                Shield = new ShieldModel()
+                {
+                    Name = "Gitupis 17",
+                    MinSP = 180,
+                    MaxSP = 180,
+                    SPCost = 20,
+                    Cost = 810,
                 }
             };
         }

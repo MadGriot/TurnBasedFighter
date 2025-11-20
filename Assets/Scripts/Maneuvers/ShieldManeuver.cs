@@ -36,6 +36,7 @@ public class ShieldManeuver : BaseManeuver
                 actor.DefensiveStatus = DefensiveStatus.Block;
                 actor.ShieldIcon.SetActive(true);
                 actor.Character.Shield.MinSP -= actor.Character.Shield.SPCost;
+                actor.ShieldBar.value = actor.Character.Shield.MinSP;
 
             }
             ManeuverComplete();
