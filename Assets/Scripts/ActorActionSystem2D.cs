@@ -36,9 +36,11 @@ public class ActorActionSystem2D : MonoBehaviour
     }
     void Start()
     {
-        SetSelectedActor(Actor);
         TurnQueue.Add(Actor);
         TurnQueue.Add(BossActor);
+        SetSelectedActor(Actor);
+        StartCombat(Actor);
+
 
     }
 
@@ -53,6 +55,7 @@ public class ActorActionSystem2D : MonoBehaviour
         TurnQueue.RemoveAt(0);
         actor.ResetManeuverPoints();
         actor.DefensiveStatus = DefensiveStatus.None;
+        actor.ResetDefensiveStatus();
         TurnQueue.Add(actor);
         IsPlayerTurn = !actor.IsEnemy;
         SetSelectedActor(actor);
@@ -72,6 +75,18 @@ public class ActorActionSystem2D : MonoBehaviour
 
 
         OnSelectedActorChanged?.Invoke(this, EventArgs.Empty);
+    }
+    private void StartCombat(Actor actor)
+    {
+        if (actor.IsEnemy && IsPlayerTurn != false)
+        {
+            IsPlayerTurn = false;
+        }
+        else
+        {
+            TurnQueue.RemoveAt(0);
+            TurnQueue.Add(actor);
+        }
     }
     public void HandleSelectedManeuver()
     {

@@ -32,6 +32,7 @@ public class DodgeManeuver : BaseManeuver
             if (Actor.DefensiveStatus != DefensiveStatus.Dodge)
             {
                 Actor.DefensiveStatus = DefensiveStatus.Dodge;
+                Actor.DodgeIcon.SetActive(true);
             }
             ManeuverComplete();
             timer = 1f;

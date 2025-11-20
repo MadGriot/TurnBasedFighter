@@ -10,6 +10,8 @@ public class Actor : MonoBehaviour
 {
     const int MAX_MANEUVER_POINTS = 3;
     internal int ManueverPoints = MAX_MANEUVER_POINTS;
+    [SerializeField] public GameObject ShieldIcon;
+    [SerializeField] public GameObject DodgeIcon;
 
     [SerializeField]
     private string CharacterName;
@@ -44,8 +46,13 @@ public class Actor : MonoBehaviour
         }
         HealthBar.maxValue = Character.AttributeScore.HP;
         HealthBar.value = Character.AttributeScore.MinHP;
+        ResetDefensiveStatus();
     }
-
+    public void ResetDefensiveStatus()
+    {
+        ShieldIcon.SetActive(false);
+        DodgeIcon.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {

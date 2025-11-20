@@ -34,6 +34,7 @@ public class ShieldManeuver : BaseManeuver
             if (actor.DefensiveStatus != DefensiveStatus.Block)
             {
                 actor.DefensiveStatus = DefensiveStatus.Block;
+                actor.ShieldIcon.SetActive(true);
                 actor.Character.Shield.MinSP -= actor.Character.Shield.SPCost;
 
             }

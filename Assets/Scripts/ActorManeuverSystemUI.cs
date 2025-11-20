@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class ActorManeuverSystemUI : MonoBehaviour
 {
     [SerializeField] private Transform maneuverButtonPrefab;
-    [SerializeField] private Transform maneuverButtonContainerTransform;
+    [SerializeField] private GameObject maneuverButtonContainerTransform;
+    [SerializeField] private GameObject playerTurnContainer;
+    [SerializeField] private GameObject enemyTurnContainer;
     void Start()
     {
         ActorActionSystem2D.Instance.OnSelectedActorChanged += ActorActionSystem2D_OnSelectedActorChanged;
         CreateActorManeuverButtons();
+        SetUIBasedOnTurn();
     }
 
     // Update is called once per frame
@@ -21,9 +24,26 @@ public class ActorManeuverSystemUI : MonoBehaviour
         
     }
 
+    private void SetUIBasedOnTurn()
+    {
+        if (ActorActionSystem2D.Instance.IsPlayerTurn)
+        {
+
+            playerTurnContainer.SetActive(true);
+            maneuverButtonContainerTransform.SetActive(true);
+            enemyTurnContainer.SetActive(false);
+        }
+        else
+        {
+            playerTurnContainer.SetActive(false);
+            maneuverButtonContainerTransform.SetActive(false);
+            enemyTurnContainer.SetActive(true);
+        }
+
+    }
     private void CreateActorManeuverButtons()
     {
-        foreach (Transform buttonTransform in maneuverButtonContainerTransform)
+        foreach (Transform buttonTransform in maneuverButtonContainerTransform.transform)
         {
             Destroy(buttonTransform.gameObject);
         }
@@ -31,7 +51,7 @@ public class ActorManeuverSystemUI : MonoBehaviour
 
         foreach (BaseManeuver baseManeuver in selectedActor.BaseManeuvers)
         {
-            Transform actionButtonTransfrom = Instantiate(maneuverButtonPrefab, maneuverButtonContainerTransform);
+            Transform actionButtonTransfrom = Instantiate(maneuverButtonPrefab, maneuverButtonContainerTransform.transform);
             ActionButtonUI actionButtonUI = actionButtonTransfrom.GetComponent<ActionButtonUI>();
             actionButtonUI.SetBaseManeuver(baseManeuver);
         }
@@ -40,5 +60,6 @@ public class ActorManeuverSystemUI : MonoBehaviour
     private void ActorActionSystem2D_OnSelectedActorChanged(object sender, EventArgs e)
     {
         CreateActorManeuverButtons();
+        SetUIBasedOnTurn();
     }
 }
