@@ -6,12 +6,8 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     public float speed = 2f;
-    private float accumulatedTime = 0;
-    private float frameDuration = 0.1f;
-    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    private Vector2 lastDirection = Vector2.up;
-    private bool hasMoved = false;
+
 
     public GameObject RightDirection;
     public GameObject LeftDirection;
@@ -43,8 +39,6 @@ public class PlayerControls : MonoBehaviour
             Input.GetAxisRaw("Vertical")
         ).normalized;
         rb.MovePosition(rb.position + movement * speed * deltaTime);
-        lastDirection = movement;
-        hasMoved = true;
 
         //Right
         if (movement.x > 0)
