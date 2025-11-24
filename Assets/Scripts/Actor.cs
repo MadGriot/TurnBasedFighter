@@ -45,11 +45,12 @@ public class Actor : MonoBehaviour
                 Character = NewCharacter.GenerateCorduka();
                 break;
         }
-        HealthBar.maxValue = Character.AttributeScore.HP;
-        HealthBar.value = Character.AttributeScore.MinHP;
-        ShieldBar.maxValue = Character.Shield.MaxSP;
-        ShieldBar.value = Character.Shield.MinSP;
-        ResetDefensiveStatus();
+
+        if (HealthBar != null && ShieldBar != null)
+        {
+            SetBattleHud();
+        }
+
     }
     public void ResetDefensiveStatus()
     {
@@ -92,6 +93,14 @@ public class Actor : MonoBehaviour
         return baseManeuver.ManeuverValidation();
     }
 
+    public void SetBattleHud()
+    {
+        HealthBar.maxValue = Character.AttributeScore.HP;
+        HealthBar.value = Character.AttributeScore.MinHP;
+        ShieldBar.maxValue = Character.Shield.MaxSP;
+        ShieldBar.value = Character.Shield.MinSP;
+        ResetDefensiveStatus();
+    }
     public void Damage(int damage, DamageType damageType)
     {
         damageSystem.Damage(damage, StatusEffects, damageType);
