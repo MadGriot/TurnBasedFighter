@@ -10,6 +10,7 @@ public class ActorManeuverSystemUI : MonoBehaviour
     [SerializeField] private Transform maneuverButtonPrefab;
     [SerializeField] private GameObject maneuverButtonContainerTransform;
     [SerializeField] private GameObject playerTurnContainer;
+    [SerializeField] private GameObject endTurnContainer;
     [SerializeField] private GameObject enemyTurnContainer;
     void Start()
     {
@@ -30,12 +31,14 @@ public class ActorManeuverSystemUI : MonoBehaviour
         {
 
             playerTurnContainer.SetActive(true);
+            endTurnContainer.SetActive(true);
             maneuverButtonContainerTransform.SetActive(true);
             enemyTurnContainer.SetActive(false);
         }
         else
         {
             playerTurnContainer.SetActive(false);
+            endTurnContainer.SetActive(false);
             maneuverButtonContainerTransform.SetActive(false);
             enemyTurnContainer.SetActive(true);
         }
