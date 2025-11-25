@@ -1,3 +1,4 @@
+using Assets.Scripts.Globals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ public class BattleSceneChange : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            SequenceSystem.CharacterPosition = collision.transform.position;
+            SequenceSystem.InCombat = true;
             SceneManager.LoadScene(2);
         }
     }
+
 }

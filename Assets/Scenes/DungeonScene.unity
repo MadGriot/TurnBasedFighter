@@ -3021,8 +3021,9 @@ GameObject:
   - component: {fileID: 1078252473}
   - component: {fileID: 1078252474}
   - component: {fileID: 1078252475}
+  - component: {fileID: 1078252476}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Corduka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3174,7 +3175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &1078252475
 MonoBehaviour:
@@ -3186,6 +3187,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9bf321da947b6f45b3a7f419b98b1e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1078252476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078252469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc519fe56ffe0c4e8173ccacf44140e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1103833783
@@ -3839,6 +3852,7 @@ GameObject:
   - component: {fileID: 1169372587}
   - component: {fileID: 1169372586}
   - component: {fileID: 1169372591}
+  - component: {fileID: 1169372592}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4000,7 +4014,7 @@ Transform:
   m_GameObject: {fileID: 1169372585}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6, y: -6.22, z: 0}
+  m_LocalPosition: {x: -9, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4029,6 +4043,19 @@ MonoBehaviour:
   UpDirection: {fileID: 1691094407}
   DownDirection: {fileID: 2070259052}
   playerAnimation: {fileID: 1169372587}
+--- !u!114 &1169372592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169372585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2ac8111fa68a004a8f190be1a8167e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1169372585}
 --- !u!1 &1238095657
 GameObject:
   m_ObjectHideFlags: 0

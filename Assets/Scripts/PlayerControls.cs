@@ -1,3 +1,4 @@
+using Assets.Scripts.Globals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -18,6 +19,8 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
        rb = GetComponent<Rigidbody2D>();
+        if (!SequenceSystem.InCombat)
+            rb.position = SequenceSystem.CharacterPosition;
         Direcitons = new List<GameObject>()
         {
             RightDirection, LeftDirection, UpDirection, DownDirection

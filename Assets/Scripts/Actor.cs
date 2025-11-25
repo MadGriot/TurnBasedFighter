@@ -1,10 +1,13 @@
 using Assets.Scripts.Equipment;
+using Assets.Scripts.Globals;
 using Assets.Scripts.Mechanics;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.CharacterSheets;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Actor : MonoBehaviour
 {
@@ -24,18 +27,13 @@ public class Actor : MonoBehaviour
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
     private DamageSystem damageSystem;
+    private Rigidbody2D rb;
     public Slider HealthBar;
     public Slider ShieldBar;
 
     private void Awake()
     {
         BaseManeuvers = GetComponents<BaseManeuver>();
-
-    }
-    void Start()
-    {
-        damageSystem = GetComponent<DamageSystem>();
-
         switch (CharacterName)
         {
             case "Leonama":
@@ -45,6 +43,13 @@ public class Actor : MonoBehaviour
                 Character = NewCharacter.GenerateCorduka();
                 break;
         }
+
+    }
+    void Start()
+    {
+        damageSystem = GetComponent<DamageSystem>();
+        damageSystem.OnKill += DamageSystem_OnKill;
+        rb = GetComponent<Rigidbody2D>();
 
         if (HealthBar != null && ShieldBar != null)
         {
@@ -60,7 +65,7 @@ public class Actor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public bool TryToDoManeuver(BaseManeuver baseManeuver)
     {
@@ -107,6 +112,19 @@ public class Actor : MonoBehaviour
         HealthBar.value = Character.AttributeScore.MinHP;
         ShieldBar.value = Character.Shield.MinSP;
     }
-
+    private void DamageSystem_OnKill(object sender, EventArgs e)
+    {
+        if (IsEnemy)
+        {
+            
+            switch (Character.FirstName)
+            {
+                case "Corduka":
+                    SequenceSystem.CordukaDead = true;
+                    break;
+            }
+            SequenceSystem.EndCombat();
+        }
+    }
     public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;
 }

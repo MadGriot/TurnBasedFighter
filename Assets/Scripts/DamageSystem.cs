@@ -61,6 +61,11 @@ public class DamageSystem : MonoBehaviour
                 break;
         }
 
-        
+        if (Character.AttributeScore.MinHP <= 0)
+        {
+            OnKill?.Invoke(this, EventArgs.Empty);
+        }
+
+
     }
 }
