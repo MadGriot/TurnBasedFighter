@@ -130,7 +130,10 @@ public class AttackManeuver : BaseManeuver
     public override void ActivateManeuver(Action onActionComplete)
     {
         ManeuverStart(onActionComplete);
-        targetActor = ActorActionSystem2D.Instance.TurnQueue.First(x => x.IsEnemy == true);
+        if (!Actor.IsEnemy)
+            targetActor = ActorActionSystem2D.Instance.TurnQueue.First(x => x.IsEnemy == true);
+        else
+            targetActor = ActorActionSystem2D.Instance.TurnQueue.First(x => x.IsEnemy == false);
         attackState = AttackState.Ready;
         stateTimer = 1f;
 

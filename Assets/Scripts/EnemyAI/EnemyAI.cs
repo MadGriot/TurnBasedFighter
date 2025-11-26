@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -13,10 +15,27 @@ public class EnemyAI : MonoBehaviour
     }
     private State state;
     private float timer;
+    private BehaviorTree tree;
+    private BehaviorTree tree2;
+    private BehaviorSelector treeSelector;
+
+    internal AttackManeuver attackManeuver { get; private set;  }
+    internal ShieldManeuver shieldManeuver { get; private set; }
+    internal DodgeManeuver dodgeManeuver { get; private set; }
     void Start()
     {
         state = State.WaitingForEnemyTurn;
         ActorActionSystem2D.Instance.OnSelectedActorChanged += ActorActionSystem2D_OnSelectedActorChanged;
+        attackManeuver = GetComponent<AttackManeuver>();
+        shieldManeuver = GetComponent<ShieldManeuver>();
+        dodgeManeuver = GetComponent<DodgeManeuver>();
+        tree = new();
+        tree2 = new();
+        treeSelector = new("Tree Selector");
+        SetUpBehaviorTreeSequence(tree);
+        SetUpBehaviorTreeSequence2(tree2);
+        treeSelector.AddChild(tree);
+        treeSelector.AddChild(tree2);
     }
 
     // Update is called once per frame
@@ -24,12 +43,32 @@ public class EnemyAI : MonoBehaviour
     {
         if (ActorActionSystem2D.Instance.IsPlayerTurn)
             return;
-        float deltaTime = Time.deltaTime;
-        timer -= deltaTime;
-        if (timer <= 0f)
+
+        switch (state)
         {
-            ActorActionSystem2D.Instance.TurnEnded();
+            case State.WaitingForEnemyTurn:
+                break;
+            case State.TakingTurn:
+                treeSelector.Process();
+                if (treeSelector.SelectedSequence.Process())
+                {
+                    state = State.Busy;
+                }
+                else
+                {
+                    ActorActionSystem2D.Instance.TurnEnded();
+                }
+                break;
+            case State.Busy:
+                break;
         }
+        float deltaTime = Time.deltaTime;
+
+    }
+    private void SetStateTakingTurn()
+    {
+        timer = 1.5f;
+        state = State.TakingTurn;
     }
 
     private void ActorActionSystem2D_OnSelectedActorChanged(object sender, EventArgs e)
@@ -40,5 +79,40 @@ public class EnemyAI : MonoBehaviour
             timer = 2f;
 
         }
+    }
+
+    private bool TryTakeEnemyAIManeuver(Action onEnemyAIManeuverComplete, BaseManeuver baseManeuver)
+    {
+        baseManeuver.ActivateManeuver(onEnemyAIManeuverComplete);
+        return true;
+    }
+
+    public void SetUpBehaviorTreeSequence(BehaviorTree tree)
+    {
+        Actor actor = GetComponent<Actor>();
+        BehaviorSequence turnPattern = new("Turn Pattern");
+        BehaviorLeaf attack = new("Attack Target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf attack2 = new("Attack Target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf shield = new("Using Shield", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, shieldManeuver), () => actor.CanDoManeuver(shieldManeuver));
+
+        turnPattern.AddChild(attack);
+        turnPattern.AddChild(attack2);
+        turnPattern.AddChild(shield);
+        tree.AddChild(turnPattern);
+    }
+
+    public void SetUpBehaviorTreeSequence2(BehaviorTree tree)
+    {
+        Actor actor = GetComponent<Actor>();
+        BehaviorSequence turnPattern = new("Turn Pattern2");
+        BehaviorLeaf attack = new("Attack target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf attack2 = new("Attack target again", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf attack3 = new("Attack Target antoher time", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+
+        turnPattern.AddChild(attack);
+        turnPattern.AddChild(attack2);
+        turnPattern.AddChild(attack3);
+        tree.AddChild(turnPattern);
+
     }
 }

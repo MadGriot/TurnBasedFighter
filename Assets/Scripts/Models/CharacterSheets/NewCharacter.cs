@@ -85,7 +85,21 @@ namespace Assets.Scripts.Models.CharacterSheets
 
         public static Character GenerateCorduka()
         {
-            return new Character()
+            List<SkillModel> skills = new()
+            {
+                new SkillModel
+                {
+                    Level = 5,
+                    Skill = Mechanics.Skill.BallisticWeapons,
+
+                },
+                new SkillModel
+                {
+                    Level = 3,
+                    Skill = Mechanics.Skill.MeleeWeapons,
+                }
+            };
+            Character character = new Character()
             {
                 FirstName = "Corduka",
                 LastName = "Fulguma",
@@ -117,6 +131,7 @@ namespace Assets.Scripts.Models.CharacterSheets
                     Accuracy = 2,
                     Range = 15,
                     WeaponWeight = 12,
+                    Skill = Mechanics.Skill.BallisticWeapons,
                     AmmoWeight = 2,
                     RoF = 3,
                     MaxAmmo = 7,
@@ -141,6 +156,8 @@ namespace Assets.Scripts.Models.CharacterSheets
                     Cost = 810,
                 }
             };
+            character.Skills.AddRange(skills);
+            return character;
         }
     }
 }
