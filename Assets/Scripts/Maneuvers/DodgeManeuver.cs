@@ -2,6 +2,7 @@ using Assets.Scripts.Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DodgeManeuver : BaseManeuver
@@ -13,7 +14,7 @@ public class DodgeManeuver : BaseManeuver
     protected void Awake()
     {
         Name = "Dodge";
-
+        ValidationMessage = $"{Actor.Character.FirstName} uses dodge";
     }
     protected void Start()
     {
@@ -24,6 +25,8 @@ public class DodgeManeuver : BaseManeuver
     // Update is called once per frame
     void Update()
     {
+        if (ActorActionSystem2D.Instance.PlayerDead)
+            return;
         if (!IsActive) return;
         float deltaTime = Time.deltaTime;
 
@@ -42,6 +45,10 @@ public class DodgeManeuver : BaseManeuver
 
     public override void ActivateManeuver(Action onActionComplete)
     {
+        if (ActorActionSystem2D.Instance.IsPlayerTurn)
+            ActorManeuverSystemUI.Instance.playerTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
+        else
+            ActorManeuverSystemUI.Instance.enemyTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
         ManeuverStart(onActionComplete);
     }
 

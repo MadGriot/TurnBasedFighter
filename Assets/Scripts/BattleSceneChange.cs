@@ -1,19 +1,29 @@
 using Assets.Scripts.Globals;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BattleSceneChange : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             SequenceSystem.CharacterPosition = collision.transform.position;
             SequenceSystem.InCombat = true;
-            SceneManager.LoadScene(2);
+
+            switch (gameObject.name)
+            {
+                case "Corduka":
+                    SceneManager.LoadScene(2);
+                    break;
+                case "Enjingos":
+                    SceneManager.LoadScene(3);
+                    break;
+                case "Zukori":
+                    SceneManager.LoadScene(4);
+                    break;
+            }
+
         }
     }
 

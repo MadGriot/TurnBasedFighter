@@ -8,10 +8,18 @@ using UnityEngine.UI;
 public class ActorManeuverSystemUI : MonoBehaviour
 {
     [SerializeField] private Transform maneuverButtonPrefab;
-    [SerializeField] private GameObject maneuverButtonContainerTransform;
-    [SerializeField] private GameObject playerTurnContainer;
+    [SerializeField] public GameObject maneuverButtonContainerTransform;
+    [SerializeField] public GameObject playerTurnContainer;
     [SerializeField] private GameObject endTurnContainer;
-    [SerializeField] private GameObject enemyTurnContainer;
+    [SerializeField] public GameObject enemyTurnContainer;
+    [SerializeField] private GameObject gameOverContainer;
+
+    public static ActorManeuverSystemUI Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         ActorActionSystem2D.Instance.OnSelectedActorChanged += ActorActionSystem2D_OnSelectedActorChanged;
@@ -22,7 +30,10 @@ public class ActorManeuverSystemUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (ActorActionSystem2D.Instance.PlayerDead)
+        {
+            gameOverContainer.SetActive(true);
+        }
     }
 
     private void SetUIBasedOnTurn()

@@ -65,18 +65,18 @@ namespace Assets.Scripts.Models.CharacterSheets
                 },
                 Armor = new ArmorModel()
                 {
-                    Name = "Iron Armor",
-                    DamageResistance = 2,
+                    Name = "Great Armor",
+                    DamageResistance = 5,
                     Cost = 120000,
                     Weight = 10,
                 },
                 Shield = new ShieldModel()
                 {
-                    Name = "Magutum",
-                    MinSP = 45,
-                    MaxSP = 45,
-                    SPCost = 5,
-                    Cost = 550
+                    Name = "Gashius 2",
+                    MinSP = 90,
+                    MaxSP = 90,
+                    SPCost = 10,
+                    Cost = 770,
                 }
             };
             character.Skills.AddRange(skills);
@@ -154,6 +154,161 @@ namespace Assets.Scripts.Models.CharacterSheets
                     MaxSP = 180,
                     SPCost = 20,
                     Cost = 810,
+                }
+            };
+            character.Skills.AddRange(skills);
+            return character;
+        }
+        public static Character GenerateEnjingos()
+        {
+            List<SkillModel> skills = new()
+            {
+                new SkillModel
+                {
+                    Level = 5,
+                    Skill = Mechanics.Skill.BallisticWeapons,
+
+                },
+                new SkillModel
+                {
+                    Level = 3,
+                    Skill = Mechanics.Skill.MeleeWeapons,
+                }
+            };
+
+            Character character = new Character()
+            {
+                FirstName = "Enjingos",
+                LastName = "Shokoaxum",
+                Level = 1,
+                PowerLevel = 75,
+                Species = Species.Sutharian,
+
+                AttributeScore = new AttributeScore()
+                {
+                    BasicLift = 20,
+                    BasicMove = 6,
+                    Constitution = 11,
+                    Dexterity = 13,
+                    Dodge = 9,
+                    Encumbrance = Mechanics.Encumbrance.None,
+                    MinHP = 30,
+                    HP = 30,
+                    Intelligence = 12,
+                    Stamina = 31,
+                    MinStamina = 31,
+                    Perception = 12,
+                    Speed = 6.0M,
+                    Strength = 10,
+                    Wisdom = 10,
+                },
+                Weapon = new WeaponModel()
+                {
+                    Name = "Sainbimo",
+                    DiceCount = 7,
+                    Accuracy = 2,
+                    Range = 25,
+                    WeaponWeight = 11,
+                    Skill = Mechanics.Skill.BallisticWeapons,
+                    AmmoWeight = 1.7m,
+                    RoF = 10,
+                    MaxAmmo = 20,
+                    STRRequirement = 9,
+                    Bulk = -5,
+                    Cost = 870,
+                    Modifier = 0
+                },
+                Armor = new ArmorModel()
+                {
+                    Name = "Iron Armor",
+                    DamageResistance = 2,
+                    Cost = 120000,
+                    Weight = 10,
+                },
+                Shield = new ShieldModel()
+                {
+                    Name = "Gashius 2",
+                    MinSP = 90,
+                    MaxSP = 90,
+                    SPCost = 10,
+                    Cost = 770,
+                }
+            };
+            character.Skills.AddRange(skills);
+            return character;
+        }
+
+        public static Character GenerateZukori()
+        {
+            List<SkillModel> skills = new()
+            {
+                new SkillModel
+                {
+                    Level = 5,
+                    Skill = Mechanics.Skill.BallisticWeapons,
+
+                },
+                new SkillModel
+                {
+                    Level = 3,
+                    Skill = Mechanics.Skill.MartialArts,
+                }
+            };
+            Character character = new Character()
+            {
+                FirstName = "Zukori",
+                LastName = "Ofikonzo",
+                Level = 1,
+                PowerLevel = 75,
+                Species = Species.Sutharian,
+                AttributeScore = new AttributeScore()
+                {
+                    BasicLift = 20,
+                    BasicMove = 6,
+                    Constitution = 11,
+                    Dexterity = 13,
+                    Dodge = 9,
+                    Encumbrance = Mechanics.Encumbrance.None,
+                    MinHP = 30,
+                    HP = 30,
+                    Intelligence = 12,
+                    Stamina = 31,
+                    MinStamina = 31,
+                    Perception = 12,
+                    Speed = 6.0M,
+                    Strength = 10,
+                    Wisdom = 10,
+                },
+                Weapon = new WeaponModel()
+                {
+                    Name = "Ultimate Knuckles",
+                    DiceCount = 5,
+                    Accuracy = 2,
+                    Range = 15,
+                    WeaponWeight = 12,
+                    Skill = Mechanics.Skill.MartialArts,
+                    AmmoWeight = 2,
+                    RoF = 3,
+                    MaxAmmo = 7,
+                    STRRequirement = 9,
+                    Bulk = -5,
+                    Cost = 940,
+                    Modifier = 10
+                },
+                Armor = new ArmorModel()
+                {
+                    Name = "Iron Armor",
+                    DamageResistance = 2,
+                    Cost = 120000,
+                    Weight = 10,
+                },
+                Shield = new ShieldModel()
+                {
+                    Name = "Magutum",
+                    MinSP = 45,
+                    MaxSP = 45,
+                    SPCost = 5,
+                    Cost = 555,
                 }
             };
             character.Skills.AddRange(skills);

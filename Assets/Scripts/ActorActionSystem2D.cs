@@ -2,6 +2,7 @@ using Assets.Scripts.Mechanics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -12,7 +13,7 @@ public class ActorActionSystem2D : MonoBehaviour
     private const float MAX_TIMER_DISPLAY = 1f;
     private float UITimer;
     private bool hasRemovedDisplayNumber = true;
-
+    public bool PlayerDead;
     [SerializeField] private Actor Actor;
     [SerializeField] private Actor BossActor;
     public event EventHandler OnSelectedActorChanged;
@@ -54,6 +55,8 @@ public class ActorActionSystem2D : MonoBehaviour
         Actor actor = TurnQueue[0];
         TurnQueue.RemoveAt(0);
         actor.ResetManeuverPoints();
+        ActorManeuverSystemUI.Instance.playerTurnContainer.GetComponent<TextMeshProUGUI>().text = "Player Turn";
+        ActorManeuverSystemUI.Instance.enemyTurnContainer.GetComponent<TextMeshProUGUI>().text = "Enemy Turn";
         actor.DefensiveStatus = DefensiveStatus.None;
         actor.ResetDefensiveStatus();
         TurnQueue.Add(actor);
@@ -94,7 +97,11 @@ public class ActorActionSystem2D : MonoBehaviour
             if (Actor.CanDoManeuver(SelectedManeuver))
             {
                 SetBusy();
-                SelectedManeuver.ActivateManeuver(ClearBusy);
+            if (IsPlayerTurn)
+            {
+                ActorManeuverSystemUI.Instance.maneuverButtonContainerTransform.SetActive(false);
+            }
+            SelectedManeuver.ActivateManeuver(ClearBusy);
                 OnMpUsed?.Invoke(this, new MpUsedEventArgs(SelectedManeuver.ManeuverPointCost));
                 OnManeuverStarted?.Invoke(this, EventArgs.Empty);
             }

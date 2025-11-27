@@ -43,7 +43,8 @@ public class EnemyAI : MonoBehaviour
     {
         if (ActorActionSystem2D.Instance.IsPlayerTurn)
             return;
-
+        if (ActorActionSystem2D.Instance.PlayerDead)
+            return;
         switch (state)
         {
             case State.WaitingForEnemyTurn:
@@ -56,7 +57,7 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    ActorActionSystem2D.Instance.TurnEnded();
+                    state = State.WaitingForEnemyTurn;
                 }
                 break;
             case State.Busy:
@@ -93,7 +94,7 @@ public class EnemyAI : MonoBehaviour
         BehaviorSequence turnPattern = new("Turn Pattern");
         BehaviorLeaf attack = new("Attack Target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
         BehaviorLeaf attack2 = new("Attack Target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
-        BehaviorLeaf shield = new("Using Shield", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, shieldManeuver), () => actor.CanDoManeuver(shieldManeuver));
+        BehaviorLeaf shield = new("Using Shield", () => TryTakeEnemyAIManeuver(ActorActionSystem2D.Instance.TurnEnded, shieldManeuver), () => actor.CanDoManeuver(shieldManeuver));
 
         turnPattern.AddChild(attack);
         turnPattern.AddChild(attack2);
@@ -107,7 +108,7 @@ public class EnemyAI : MonoBehaviour
         BehaviorSequence turnPattern = new("Turn Pattern2");
         BehaviorLeaf attack = new("Attack target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
         BehaviorLeaf attack2 = new("Attack target again", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
-        BehaviorLeaf attack3 = new("Attack Target antoher time", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf attack3 = new("Attack Target antoher time", () => TryTakeEnemyAIManeuver(ActorActionSystem2D.Instance.TurnEnded, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
 
         turnPattern.AddChild(attack);
         turnPattern.AddChild(attack2);

@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShieldIcon: {fileID: 412006358}
   DodgeIcon: {fileID: 983914464}
-  CharacterName: Corduka
+  CharacterName: Zukori
   IsEnemy: 1
   HealthBar: {fileID: 627237082}
   ShieldBar: {fileID: 91830638}
@@ -1408,7 +1408,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2131241341, guid: 03e38d93c984b594cac24fc23a36881b, type: 3}
+  m_Sprite: {fileID: -790587652, guid: 5c3eabf8848ec0f45b2bdcc210cc624e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

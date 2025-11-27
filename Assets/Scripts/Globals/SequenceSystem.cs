@@ -14,6 +14,8 @@ namespace Assets.Scripts.Globals
         public static bool InCombat {get; set;}
         public static Vector3 CharacterPosition { get; set; } = new Vector3(-7.5f, -6.0f, 0);
         public static bool CordukaDead { get; set; }
+        public static bool ZukoriDead { get; set; }
+        public static bool EnjingosDead { get; set; }
 
         public static void EndCombat()
         {

@@ -5,6 +5,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Models.CharacterSheets;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -19,6 +20,7 @@ public class Actor : MonoBehaviour
     [SerializeField]
     private string CharacterName;
     public bool IsEnemy;
+
     internal Character Character;
     internal BaseManeuver[] BaseManeuvers;
     internal bool DidOffensiveManeuver;
@@ -27,7 +29,6 @@ public class Actor : MonoBehaviour
     internal DefensiveStatus DefensiveStatus = DefensiveStatus.None;
     internal bool actorSelected;
     private DamageSystem damageSystem;
-    private Rigidbody2D rb;
     public Slider HealthBar;
     public Slider ShieldBar;
 
@@ -42,6 +43,12 @@ public class Actor : MonoBehaviour
             case "Corduka":
                 Character = NewCharacter.GenerateCorduka();
                 break;
+            case "Enjingos":
+                Character = NewCharacter.GenerateEnjingos();
+                break;
+            case "Zukori":
+                Character = NewCharacter.GenerateZukori();
+                break;
         }
 
     }
@@ -49,7 +56,6 @@ public class Actor : MonoBehaviour
     {
         damageSystem = GetComponent<DamageSystem>();
         damageSystem.OnKill += DamageSystem_OnKill;
-        rb = GetComponent<Rigidbody2D>();
 
         if (HealthBar != null && ShieldBar != null)
         {
@@ -122,8 +128,19 @@ public class Actor : MonoBehaviour
                 case "Corduka":
                     SequenceSystem.CordukaDead = true;
                     break;
+                case "Enjingos":
+                    SequenceSystem.EnjingosDead = true;
+                    break;
+                case "Zukori":
+                    SequenceSystem.ZukoriDead = true;
+                    break;
             }
             SequenceSystem.EndCombat();
+        }
+        else
+        {
+            ActorActionSystem2D.Instance.PlayerDead = true;
+           
         }
     }
     public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;

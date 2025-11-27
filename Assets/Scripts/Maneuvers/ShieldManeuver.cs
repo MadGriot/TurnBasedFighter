@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -14,7 +15,7 @@ public class ShieldManeuver : BaseManeuver
     protected void Awake()
     {
         Name = "Shield";
-
+        ValidationMessage = $"{Actor.Character.FirstName} uses shield";
     }
     void Start()
     {
@@ -25,6 +26,8 @@ public class ShieldManeuver : BaseManeuver
     // Update is called once per frame
     void Update()
     {
+        if (ActorActionSystem2D.Instance.PlayerDead)
+            return;
         if (!IsActive) return;
         float deltaTime = Time.deltaTime;
 
@@ -47,7 +50,10 @@ public class ShieldManeuver : BaseManeuver
 
     public override void ActivateManeuver(Action onActionComplete)
     {
-
+        if (ActorActionSystem2D.Instance.IsPlayerTurn)
+            ActorManeuverSystemUI.Instance.playerTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
+        else
+            ActorManeuverSystemUI.Instance.enemyTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
         ManeuverStart(onActionComplete);
     }
 

@@ -14,6 +14,14 @@ public class DestroyIfDead : MonoBehaviour
                 if (SequenceSystem.CordukaDead)
                     Destroy(gameObject);
                 break;
+            case "Zukori":
+                if (SequenceSystem.ZukoriDead)
+                    Destroy(gameObject);
+                break;
+            case "Enjingos":
+                if (SequenceSystem.EnjingosDead)
+                    Destroy(gameObject);
+                break;
         }
     }
 

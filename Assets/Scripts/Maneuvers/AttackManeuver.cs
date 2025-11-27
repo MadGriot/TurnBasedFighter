@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ public class AttackManeuver : BaseManeuver
     protected void Awake()
     {
         Name = "Attack";
+        ValidationMessage = $"{Actor.Character.FirstName} uses attack";
 
     }
     protected void Start()
@@ -40,7 +42,8 @@ public class AttackManeuver : BaseManeuver
     // Update is called once per frame
     void Update()
     {
-
+        if (ActorActionSystem2D.Instance.PlayerDead)
+            return;
         if (!IsActive) return;
 
         stateTimer -= Time.deltaTime;
@@ -129,6 +132,10 @@ public class AttackManeuver : BaseManeuver
     }
     public override void ActivateManeuver(Action onActionComplete)
     {
+        if (ActorActionSystem2D.Instance.IsPlayerTurn)
+            ActorManeuverSystemUI.Instance.playerTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
+        else
+            ActorManeuverSystemUI.Instance.enemyTurnContainer.GetComponent<TextMeshProUGUI>().text = ValidationMessage;
         ManeuverStart(onActionComplete);
         if (!Actor.IsEnemy)
             targetActor = ActorActionSystem2D.Instance.TurnQueue.First(x => x.IsEnemy == true);
