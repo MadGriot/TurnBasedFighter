@@ -9,6 +9,7 @@ public class PlayerStartUpScript : MonoBehaviour
     void Start()
     {
         SequenceSystem.PlayerObject = Player;
+        GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().PlayMusic();
     }
 
     // Update is called once per frame

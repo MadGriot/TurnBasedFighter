@@ -140,7 +140,8 @@ public class Actor : MonoBehaviour
         else
         {
             ActorActionSystem2D.Instance.PlayerDead = true;
-           
+            GameObject.FindGameObjectWithTag("Music").GetComponent<BackgroundMusic>().StopMusic();
+
         }
     }
     public void ResetManeuverPoints() => ManueverPoints = MAX_MANEUVER_POINTS;

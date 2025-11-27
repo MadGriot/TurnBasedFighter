@@ -14,7 +14,7 @@ namespace Assets.Scripts.Models.CharacterSheets
             {
                 new SkillModel
                 {
-                    Level = 3,
+                    Level = 5,
                     Skill = Mechanics.Skill.BallisticWeapons,
 
                 },
@@ -56,6 +56,7 @@ namespace Assets.Scripts.Models.CharacterSheets
                     Accuracy = 2,
                     Range = 20,
                     WeaponWeight = 2,
+                    Skill = Mechanics.Skill.BallisticWeapons,
                     AmmoWeight = 0.7M,
                     RoF = 3,
                     MaxAmmo = 20,
@@ -89,7 +90,7 @@ namespace Assets.Scripts.Models.CharacterSheets
             {
                 new SkillModel
                 {
-                    Level = 5,
+                    Level = 2,
                     Skill = Mechanics.Skill.BallisticWeapons,
 
                 },
@@ -149,11 +150,11 @@ namespace Assets.Scripts.Models.CharacterSheets
                 },
                 Shield = new ShieldModel()
                 {
-                    Name = "Gitupis 17",
-                    MinSP = 180,
-                    MaxSP = 180,
-                    SPCost = 20,
-                    Cost = 810,
+                    Name = "Magutum",
+                    MinSP = 45,
+                    MaxSP = 45,
+                    SPCost = 5,
+                    Cost = 555,
                 }
             };
             character.Skills.AddRange(skills);
