@@ -102,7 +102,6 @@ public class ActorActionSystem2D : MonoBehaviour
                 ActorManeuverSystemUI.Instance.maneuverButtonContainerTransform.SetActive(false);
             }
             SelectedManeuver.ActivateManeuver(ClearBusy);
-                OnMpUsed?.Invoke(this, new MpUsedEventArgs(SelectedManeuver.ManeuverPointCost));
                 OnManeuverStarted?.Invoke(this, EventArgs.Empty);
             }
        
@@ -115,5 +114,10 @@ public class ActorActionSystem2D : MonoBehaviour
         {
             Amount = amount;
         }
+    }
+
+    public void InvokeOnMpUsed(int mpCost)
+    {
+        OnMpUsed?.Invoke(this, new MpUsedEventArgs(mpCost));
     }
 }

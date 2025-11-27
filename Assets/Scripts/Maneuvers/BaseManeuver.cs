@@ -52,6 +52,7 @@ public abstract class BaseManeuver : MonoBehaviour
     {
         IsActive = true;
         OnActionComplete = onActionComplete;
+        ActorActionSystem2D.Instance.InvokeOnMpUsed(ManeuverPointCost);
     }
 
     protected void ManeuverComplete()
