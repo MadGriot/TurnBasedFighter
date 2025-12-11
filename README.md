@@ -10,7 +10,7 @@ Using the shield will also take points. Once you run out of points you will be u
 
 ## Directions
 
-Defeat all the enemies in the dungeon. All of the enemies use a simple behaviour tree sequence.
+Defeat all the enemies in the dungeon. In order to fight them, you simply have to collide wtih them. All of the enemies use a simple behaviour tree sequence.
 The sequences are:
 - Attack -> Attack -> Shield
 - Attack -> Attack -> Dodge.
