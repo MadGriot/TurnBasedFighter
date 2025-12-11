@@ -108,11 +108,11 @@ public class EnemyAI : MonoBehaviour
         BehaviorSequence turnPattern = new("Turn Pattern2");
         BehaviorLeaf attack = new("Attack target", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
         BehaviorLeaf attack2 = new("Attack target again", () => TryTakeEnemyAIManeuver(SetStateTakingTurn, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
-        BehaviorLeaf attack3 = new("Attack Target antoher time", () => TryTakeEnemyAIManeuver(ActorActionSystem2D.Instance.TurnEnded, attackManeuver), () => actor.CanDoManeuver(attackManeuver));
+        BehaviorLeaf dodge = new("Attack Target antoher time", () => TryTakeEnemyAIManeuver(ActorActionSystem2D.Instance.TurnEnded, dodgeManeuver), () => actor.CanDoManeuver(dodgeManeuver));
 
         turnPattern.AddChild(attack);
         turnPattern.AddChild(attack2);
-        turnPattern.AddChild(attack3);
+        turnPattern.AddChild(dodge);
         tree.AddChild(turnPattern);
 
     }
