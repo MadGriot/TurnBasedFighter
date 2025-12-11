@@ -21,4 +21,4 @@ LD Montello\
 Sai Vignesh Surthani
 
 The Map was made using Inkarnate. https://inkarnate.com/ \
-The sprites was made using the RPG Maker character generator.
+The sprites was made using the RPG Maker MZ character generator.
