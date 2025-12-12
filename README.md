@@ -6,7 +6,7 @@ It showcases basic rpg combat and a starting point for building more complex RPG
 
 Use the arrow keys or WASD to move.
 In combat you can either attack, dodge or use a shield. Dodge only give you chance to dodge the attack while shield will block incoming damage.
-Using the shield will also take points. Once you run out of points you will be unable to use the shield.
+Using the shield will also take points. Shield and Dodge are defensive moves and can only be used once per turn you can not use Shield and Dodge at the same time. Once you run out of points you will be unable to use the shield.
 
 ## Directions
 
